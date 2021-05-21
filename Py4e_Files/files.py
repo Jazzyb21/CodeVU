@@ -1,60 +1,16 @@
-# import string
-#File Processing
-#A text file is a sequence of lines
-# a text file has newlines at the end of each line
-#To read a file you must call the open(filename, mode)  -mode is optional
-#example file_handle = open('strings.py', 'r')
+# Write a program that reads the words in words.txt and stores them as keys in a dictionary. 
+# It doesnâ€™t matter what the values are. Then you can use the in operator as a fast way to check whether a string is in the dictionary.
+hand = open("words.txt")
 
-# What is a handle: opening outside to the program, you can talk to the file from the handle. A thing that allows you to get to the file
-#\n still one character
+stored_words = dict()
+for line in hand:
+    line.rstrip()
+    words = line.split()
+    for word in words:
+        stored_words[word] = stored_words.get(word, 0) + 1
 
-#Reading Files in Python
-# Example xfile = open('mbox.text)
-# for line in xfile:
-    #print(cheese)
-#Reading the Whole File into a sinlge string Example:
-# result = file_hanlde.read()
-
-# file_name = input("Enter a file name: ")
-
-# try:
-#     result = file_name.find('na na boo boo')
-#     if result == -1:
-#         file_handle = open(file_name)
-#     else:
-#         print("Na na boo to you! You have been punk'd")
-#         quit()
-        
-# except:
-#     print("File cannot be opened: ", file_name)
-#     file_handle.close()
-#     quit()
-
-# count = 0
-# for line in file_handle:    
-#     line = line.rstrip()
-#     count = count + 1
-# file_handle.close()
-# print(f"There are {count} lines in this {file_name}")
-
-
-# Write a program to read through a file and 
-# Print the contents of the file (line by line) 
-# All in upper case. 
-
-file_name = input('Enter the file name. ')
-file_name = file_name.lower()
-line_count = 0
-if file_name == 'na na boo boo':
-    print("NA NA BOO BOO TO YOU - You have been punk'd! ")
+word_to_search_for = input("Enter word:")
+if word_to_search_for in stored_words.keys():
+    print("Word Found")
 else:
-    try:
-        f_hand = open(file_name)
-    except:
-        print('File cannot be opened:', file_name)
-        quit()
-    for lines in f_hand:
-        line_count = line_count + 1
-    print('There were', line_count, 'subject lines in', file_name)          
-
-
+    print("Word not found")
